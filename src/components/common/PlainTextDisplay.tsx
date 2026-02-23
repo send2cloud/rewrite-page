@@ -24,7 +24,7 @@ const PlainTextDisplay = ({ content, className = '' }: PlainTextDisplayProps) =>
   }
 
   return (
-    <div className={`prose prose-stone max-w-none text-base md:text-lg leading-relaxed ${className}`}>
+    <div className={`prose prose-stone dark:prose-invert max-w-none text-base md:text-lg leading-relaxed ${className}`}>
       <ReactMarkdown remarkPlugins={[remarkGfm]}>
         {content}
       </ReactMarkdown>

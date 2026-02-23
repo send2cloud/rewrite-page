@@ -31,7 +31,7 @@ const MinimalContentView = ({ content, isLoading, error, style = 'standard' }: M
   // Show loading/error states or empty content message
   if (isLoading || error || !hasActualContent) {
     return (
-      <div className="max-w-4xl mx-auto p-4 border border-gray-200 rounded-md shadow-sm bg-white">
+      <div className="max-w-4xl mx-auto p-4 border border-border rounded-md shadow-sm bg-background">
         <ContentStateDisplay
           isLoading={isLoading}
           error={error}

@@ -36,7 +36,7 @@ const ContentStateDisplay = ({
 
   if (!hasContent) {
     return (
-      <div className="py-4 px-4 text-sm text-amber-600 bg-amber-50 border border-amber-200 rounded-md">
+      <div className="py-4 px-4 text-sm text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 rounded-md">
         {emptyMessage}
         <p className="mt-2 text-xs">
           Try a different URL or check if the URL is accessible and contains readable content.
