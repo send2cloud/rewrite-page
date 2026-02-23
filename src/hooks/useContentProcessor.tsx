@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { toast } from "@/components/ui/use-toast";
-import { useSettings } from '@/contexts/SettingsContext';
+
 import { ErrorCodeType, determineErrorCodeFromMessage, getToastTitleForError } from '@/core/errors';
 import { normalizeUrl } from '@/core/url';
 import { summarizationService } from '@/core/summarization';
@@ -23,7 +23,7 @@ export const useContentProcessor = (
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
   const [error, setError] = React.useState<Error & { errorCode?: ErrorCodeType } | null>(null);
   const [progress, setProgress] = React.useState<number>(0);
-  const { settings } = useSettings();
+
 
   React.useEffect(() => {
     if (!url) {
@@ -32,7 +32,7 @@ export const useContentProcessor = (
       return;
     }
 
-    console.log("Processing content with style:", style, "and bullet count:", bulletCount, "model:", settings.model);
+    console.log("Processing content with style:", style, "and bullet count:", bulletCount);
 
     const processContent = async () => {
       setIsLoading(true);
@@ -44,7 +44,7 @@ export const useContentProcessor = (
       try {
         const fullUrl = normalizeUrl(url);
 
-        console.log("Processing URL:", fullUrl, "with style:", style, "and bullet count:", bulletCount, "model:", settings.model);
+        console.log("Processing URL:", fullUrl, "with style:", style, "and bullet count:", bulletCount);
         setProgress(20);
         setProgress(40);
 
@@ -52,13 +52,12 @@ export const useContentProcessor = (
         const timeoutDuration = 30000; // 30 seconds
 
         try {
-          console.log("Calling Summarization Service with params:", { url: fullUrl, style, bulletCount, model: settings.model });
+          console.log("Calling Summarization Service with params:", { url: fullUrl, style, bulletCount });
 
           const data = await summarizationService.process({
             url: fullUrl,
             style: style,
-            bulletCount: bulletCount,
-            model: settings.model
+            bulletCount: bulletCount
           });
 
           console.log("Received response from Summarization Service");
@@ -112,7 +111,7 @@ export const useContentProcessor = (
     };
 
     processContent();
-  }, [url, style, bulletCount, settings.model]);
+  }, [url, style, bulletCount]);
 
   return { originalContent, summary, isLoading, error, progress };
 };

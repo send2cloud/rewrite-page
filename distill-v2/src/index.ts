@@ -79,21 +79,38 @@ export default {
                 content = content.substring(0, 15000) + "... [Content truncated]";
             }
 
-            const baseInstruction = "CRITICAL: Output ONLY plain text format. NO markdown. NO formatting. Do NOT include ANY introduction or conclusion. NO phrases. Start DIRECTLY with content. END immediately after content. Use only basic ASCII characters, no unicode, emojis, or special characters.";
+            const baseInstruction = "CRITICAL: Output beautifully formatted Markdown. Use headings, lists, bolding, and italics where appropriate to make the text engaging and highly readable. Do NOT include ANY generic introduction or conclusion phrases. Start DIRECTLY with the content. END immediately after the content finishes.";
 
             let systemPrompt = "";
             switch (style.toLowerCase()) {
                 case 'simple': systemPrompt = `You are a helpful assistant that specializes in simplifying complex content. Rewrite the provided text in simple, easy-to-understand English with short sentences and common words. Avoid jargon and technical terms. ${baseInstruction}`; break;
-                case 'bullets': systemPrompt = `You are a helpful assistant. Extract the 5 most important points from content. Present them as numbered items. Make each point concise. ${baseInstruction}`; break;
+                case 'bullets': systemPrompt = `You are a helpful assistant. Extract the 5 most important points from content. Present them as a bulleted markdown list. Make each point concise. ${baseInstruction}`; break;
                 case 'eli5': systemPrompt = `You are a helpful assistant that explains complex topics as if to a 5-year-old child. Use ONLY very simple language. Short sentences. Common words. Avoid ANY complex terms. Keep paragraphs to 2-3 simple sentences. ${baseInstruction}`; break;
                 case 'joke': systemPrompt = `You are a professional comedian. Summarize the provided content into a highly humorous, witty, and deeply sarcastic joke or set of jokes. Keep the core facts but wrap them in comedy. ${baseInstruction}`; break;
                 case 'concise': systemPrompt = `You are a helpful assistant that specializes in creating extremely concise summaries. Distill the content down to its absolute essence in as few words as possible. ${baseInstruction}`; break;
-                case 'tweet': systemPrompt = `You are a helpful assistant. Distill the content into exactly 140 characters or less. Be extremely concise while capturing the most essential point. Don't use hashtags. ${baseInstruction}`; break;
+                case 'tweet': systemPrompt = `You are a helpful assistant. Distill the content into exactly 280 characters or less. Be extremely concise while capturing the most essential point. Don't use hashtags. ${baseInstruction}`; break;
                 case 'clickbait': systemPrompt = `You are a world-class viral content creator. Turn the provided content into a highly hyperbolic, sensationally dramatic, and absolutely irresistible "clickbait" summary. Make it sound like the most important thing anyone will read today. Keep the core facts but wrap them in pure viral energy. ${baseInstruction}`; break;
-                case 'standard': systemPrompt = `You are a helpful assistant. Identify the key information and present it in a plain text format. ${baseInstruction}`; break;
+                case 'top10': systemPrompt = `You are a content organizer. Extract the information into a "Top 10 List" format. Order them by importance. ${baseInstruction}`; break;
+                case 'todo': systemPrompt = `You are a productivity coach. Convert the content into an actionable To-Do List format with markdown checkboxes. ${baseInstruction}`; break;
+                case 'haiku': systemPrompt = `You are a Japanese poet. Summarize the absolute core of this content as a 5-7-5 syllable Haiku. ${baseInstruction}`; break;
+                case 'newspaper': systemPrompt = `You are a vintage journalist. Rewrite the content in the style of an old-school newspaper article, complete with a sensational headline. ${baseInstruction}`; break;
+                case 'poem': systemPrompt = `You are a poet. Rewrite this content as a beautiful, rhyming poem that captures the emotion and facts of the article. ${baseInstruction}`; break;
+                case 'recipe': systemPrompt = `You are a chef. Format the content exactly like a cooking recipe, with "Ingredients" (the core facts) and "Instructions" (the events or arguments). ${baseInstruction}`; break;
+                case 'song': systemPrompt = `You are a musical lyricist. Transform the content into song lyrics, complete with [Verse] and [Chorus] markers. Make it catchy. ${baseInstruction}`; break;
+                case 'shakespeare': systemPrompt = `You are William Shakespeare. Rewrite the content in Early Modern English, using iambic pentameter where possible, 'thou', 'doth', and dramatic theatrical flair. ${baseInstruction}`; break;
+                case 'thread': systemPrompt = `You are a viral Twitter user. Write a highly engaging "Tweet Thread". Separate each "tweet" with horizontal rules (---). Each tweet must be under 280 characters. ${baseInstruction}`; break;
+                case 'tldr': systemPrompt = `Provide an extreme TLDR summary in exactly 1 or 2 high-impact sentences. Provide no other formatting. ${baseInstruction}`; break;
+                case 'pirate': systemPrompt = `You are a feared Pirate Captain. Rewrite the content entirely in pirate speak (e.g., Ahoy, mateys, shiver me timbers, ye, arrr). ${baseInstruction}`; break;
+                case 'bedtime': systemPrompt = `You are a gentle storyteller. Summarize the content as a soothing children's bedtime story, ending with a small moral or sleepy conclusion. ${baseInstruction}`; break;
+                case 'motivational': systemPrompt = `You are a high-energy motivational speaker (like Tony Robbins). Deliver this content as an inspiring, fiery, and deeply motivational speech that tells the reader to take action! ${baseInstruction}`; break;
+                case 'email': systemPrompt = `You are a corporate professional. Summarize this content as a polished, concise corporate email addressed to the team. Use Subject, Greeting, and Sign-off. ${baseInstruction}`; break;
+                case 'scifi': systemPrompt = `You are a sci-fi novelist. Rewrite the content entirely as a futuristic science fiction story taking place in the year 3045. ${baseInstruction}`; break;
+                case 'medieval': systemPrompt = `You are a medieval bard. Recount this content as a grand tale or legend from the Dark Ages, involving kingdoms, knights, or serfs. ${baseInstruction}`; break;
+                case 'debate': systemPrompt = `You are a moderator. Structure the content as a debate, clearly listing the primary arguments from opposing sides in a structured format. ${baseInstruction}`; break;
+                case 'standard': systemPrompt = `You are a helpful assistant. Identify the key information and present it beautifully formatted. ${baseInstruction}`; break;
                 default:
                     // If it's none of the predefined styles, we treat it as a language translation + standard summary, OR a custom style.
-                    systemPrompt = `You are a world-class translator and summarizer. Your task is to extract the key points of the provided content, summarize them clearly, and translate the summary entirely to ${style}. Start directly with the translated text. No preamble. No sign-offs. Just the output text. ${baseInstruction}`;
+                    systemPrompt = `You are a world-class translator and styler. Your task is to extract the key points of the provided content, summarize them clearly, and strictly apply the style / translate to the language: "${style}". Start directly with the text. No preamble. No sign-offs. Just the output text nicely formatted in markdown. ${baseInstruction}`;
                     break;
             }
             const aiResponse = await env.AI.run("@cf/meta/llama-3.1-8b-instruct", {

@@ -18,13 +18,13 @@ interface MinimalContentViewProps {
 const MinimalContentView = ({ content, isLoading, error, style = 'standard' }: MinimalContentViewProps) => {
   // First check if we have any input at all
   const hasRawInput = Boolean(content) && typeof content === 'string';
-  
+
   // Then check if the input has actual content (not just whitespace)
   const hasRawContent = hasRawInput && content.trim().length > 0;
-  
+
   // Apply plain text formatting to all content regardless of style
-  const processedContent = hasRawContent ? simplifyToPlainText(content) : '';
-  
+  const processedContent = hasRawContent ? content : '';
+
   // Check if we still have valid content after processing
   const hasActualContent = Boolean(processedContent && processedContent.trim().length > 0);
 
@@ -32,7 +32,7 @@ const MinimalContentView = ({ content, isLoading, error, style = 'standard' }: M
   if (isLoading || error || !hasActualContent) {
     return (
       <div className="max-w-4xl mx-auto p-4 border border-gray-200 rounded-md shadow-sm bg-white">
-        <ContentStateDisplay 
+        <ContentStateDisplay
           isLoading={isLoading}
           error={error}
           hasContent={hasActualContent}
