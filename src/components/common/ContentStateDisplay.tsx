@@ -28,7 +28,7 @@ const ContentStateDisplay = ({
 
   if (error) {
     return (
-      <div className="py-4 px-4 text-sm text-red-600 bg-red-50 border border-red-200 rounded-md">
+      <div className="py-4 px-4 text-sm text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-800 rounded-md">
         Error: {errorMessage || error.message}
       </div>
     );
