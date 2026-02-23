@@ -2,8 +2,9 @@ import { SummarizationService, SummarizationRequest, SummarizationResponse } fro
 import { createAppError } from "@/utils/errorUtils";
 
 export class CloudflareSummarizationAdapter implements SummarizationService {
-    private readonly apiUrl = import.meta.env.VITE_API_URL ||
-        (import.meta.env.MODE === 'production' ? 'https://distill-v2.send2cloud.workers.dev' : 'http://localhost:8787');
+    private readonly apiUrl = import.meta.env.PROD
+        ? 'https://distill-v2.send2cloud.workers.dev'
+        : (import.meta.env.VITE_API_URL || 'http://localhost:8787');
 
     async process(params: SummarizationRequest): Promise<SummarizationResponse> {
         try {
