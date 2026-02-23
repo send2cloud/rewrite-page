@@ -1,0 +1,9 @@
+{
+    "name": "distill-v2",
+    "main": "src/index.ts",
+    "compatibility_date": "2024-04-05",
+    "account_id": "b0f28350a39b67060b01900cc89af8a5",
+    "ai": {
+        "binding": "AI"
+    }
+}

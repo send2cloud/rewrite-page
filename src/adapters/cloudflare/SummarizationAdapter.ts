@@ -2,7 +2,7 @@ import { SummarizationService, SummarizationRequest, SummarizationResponse } fro
 import { createAppError } from "@/utils/errorUtils";
 
 export class CloudflareSummarizationAdapter implements SummarizationService {
-    private readonly apiUrl = 'https://distill-worker.send2cloud.workers.dev';
+    private readonly apiUrl = 'http://localhost:8787';
 
     async process(params: SummarizationRequest): Promise<SummarizationResponse> {
         try {
