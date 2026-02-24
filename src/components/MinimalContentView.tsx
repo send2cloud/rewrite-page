@@ -96,11 +96,11 @@ const MinimalContentView = ({ content, isLoading, error, style = 'standard' }: M
             <ThreadsIcon className="h-4 w-4" />
           </button>
           <button onClick={handleNativeShare} className={iconBtn} aria-label="Share link" title="Share link">
-            {copied ? <Check className="h-5 w-5 text-green-500" /> : <Share2 className="h-5 w-5" />}
+            {copied ? <Check className="h-5 w-5 text-primary" /> : <Share2 className="h-5 w-5" />}
           </button>
           {hasActualContent && (
             <button onClick={handleCopyAll} className={iconBtn} aria-label="Copy all content" title="Copy all">
-              {textCopied ? <Check className="h-5 w-5 text-green-500" /> : <Copy className="h-5 w-5" />}
+              {textCopied ? <Check className="h-5 w-5 text-primary" /> : <Copy className="h-5 w-5" />}
             </button>
           )}
           <ThemeToggle />
