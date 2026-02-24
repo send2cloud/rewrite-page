@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import PlainTextDisplay from '@/components/common/PlainTextDisplay';
 import ContentStateDisplay from '@/components/common/ContentStateDisplay';
+import LetterJuggler from '@/components/distill/LetterJuggler';
 import { ArrowLeft, Share2, Check, Copy, Twitter } from 'lucide-react';
 import { ThemeToggle } from '@/components/ThemeToggle';
 
@@ -107,10 +108,12 @@ const MinimalContentView = ({ content, isLoading, error, style = 'standard' }: M
         </div>
       </header>
 
-      {(isLoading || error || !hasActualContent) ? (
+      {isLoading ? (
+        <LetterJuggler />
+      ) : (error || !hasActualContent) ? (
         <div className="max-w-2xl mx-auto p-4 mt-8">
           <ContentStateDisplay
-            isLoading={isLoading}
+            isLoading={false}
             error={error}
             hasContent={hasActualContent}
             emptyMessage={`No content available${hasRawContent ? ' (empty after processing)' : ''}. Check the URL or try a different page.`}
