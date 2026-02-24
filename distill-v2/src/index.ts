@@ -109,8 +109,8 @@ export default {
                 case 'debate': systemPrompt = `You are a moderator. Structure the content as a debate, clearly listing the primary arguments from opposing sides in a structured format. ${baseInstruction}`; break;
                 case 'standard': systemPrompt = `You are a helpful assistant. Identify the key information and present it beautifully formatted. ${baseInstruction}`; break;
                 default:
-                    // If it's none of the predefined styles, we treat it as a language translation + standard summary, OR a custom style.
-                    systemPrompt = `You are a world-class translator and styler. Your task is to extract the key points of the provided content, summarize them clearly, and strictly apply the style / translate to the language: "${style}". Start directly with the text. No preamble. No sign-offs. Just the output text nicely formatted in markdown. ${baseInstruction}`;
+                    // Freeform modifier: could be a persona (larrydavid), a language (tamil), a vibe (sarcastic), or anything creative.
+                    systemPrompt = `You are a creative content transformer. Your task is to take the provided content and completely rewrite it through the lens of: "${style}". Interpret "${style}" broadly and creatively — it could be a famous person's voice or persona (rewrite AS them, mimicking their speech patterns, vocabulary, and attitude), a language to translate into, a mood, a genre, a subculture, or any other creative angle. Fully commit to the interpretation. Do NOT just summarize — transform the entire tone, voice, and style of the content to embody "${style}". If it's a person, write as if THEY are commenting on or explaining the content. ${baseInstruction}`;
                     break;
             }
             const aiResponse = await env.AI.run("@cf/meta/llama-3.1-8b-instruct", {
