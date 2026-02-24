@@ -79,7 +79,7 @@ export default {
                 content = content.substring(0, 15000) + "... [Content truncated]";
             }
 
-            const baseInstruction = "CRITICAL: Output beautifully formatted Markdown. Use headings, lists, bolding, and italics where appropriate to make the text engaging and highly readable. Do NOT include ANY generic introduction or conclusion phrases. Start DIRECTLY with the content. END immediately after the content finishes.";
+            const baseInstruction = "CRITICAL RULES: 1) Output beautifully formatted Markdown. Use headings, lists, bolding, and italics where appropriate. 2) Do NOT include ANY generic introduction or conclusion phrases. Start DIRECTLY with the content. END immediately after the content finishes. 3) ABSOLUTELY DO NOT use any outside knowledge, facts, or information that is not explicitly present in the provided content below. You must ONLY use what is in the source text. Do NOT invent, embellish, or add any details, statistics, names, dates, or claims that are not directly stated in the content. If the content doesn't mention something, you must not mention it either. Accuracy to the source material is paramount — creativity applies ONLY to style and tone, NEVER to facts.";
 
             let systemPrompt = "";
             switch (style.toLowerCase()) {
