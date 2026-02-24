@@ -7,14 +7,10 @@ import { UrlForm } from "@/components/home/UrlForm";
 import { validateUrl, stripProtocol } from "@/core/url";
 
 const SAMPLE_URLS = [
-  'bbc.com/news',
-  'bbc.com/sport',
-  'bbc.com/culture',
-  'bbc.com/travel',
-  'bbc.com/future',
-  'bbc.com/worklife',
-  'bbc.com/reel',
-  'bbc.com/innovation',
+  'text.npr.org/g-s1-111202',
+  'text.npr.org/g-s1-111138',
+  'text.npr.org/nx-s1-5720948',
+  'text.npr.org/nx-s1-5721208',
 ];
 
 const Index = () => {
